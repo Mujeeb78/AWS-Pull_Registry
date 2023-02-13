@@ -46,7 +46,7 @@ pipeline {
 
              sh "docker pull ${REPOSITORY_URI}:${IMAGE_TAG}"
              sh "docker images"
-             sh "docker run --name mycontainer${BUILD_NUMBER} ${REPOSITORY_URI} "
+             sh "docker run -d --name container${BUILD_NUMBER} ${REPOSITORY_URI}  "
 
          }
         }
