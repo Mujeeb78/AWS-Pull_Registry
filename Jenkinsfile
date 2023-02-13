@@ -35,19 +35,19 @@ pipeline {
              sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}"
              sh "docker push ${REPOSITORY_URI}:${IMAGE_TAG}"
              sh "docker images"
-             sh 'docker rmi -f $(docker images -q)'
-             sh "docker images"
+//              sh 'docker rmi -f $(docker images -q)'
+//              sh "docker images"
          }
         }
       }
       stage('Pulling to instance') {
      steps{  
          script {
-//              sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}"
+
              sh "docker pull ${REPOSITORY_URI}:${IMAGE_TAG}"
              sh "docker images"
-//              sh 'docker rmi -f $(docker images -q)'
-//              sh "docker images"
+             sh "docker run --name mycontainer${BUILD_NUMBER} ${REPOSITORY_URI} "
+
          }
         }
       }
